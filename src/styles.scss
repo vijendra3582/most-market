@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "assets/awesome/css/font-awesome.min.css";
+@import "assets/css/plugin.min.css";
+@import "assets/css/bootstrap.css";
+@import "assets/css/style.css";
+@import "https://use.fontawesome.com/releases/v5.0.6/css/all.css";
+.slick-initialized .slick-slide {
+    display: block;
+    background: #fff;
+    margin: 1rem;
+    padding: 19px;
+}
+
+.slick-initialized .slick-slide span.slide-title {
+    font-weight: 600;
+    margin-top: 2rem;
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 26px;
+    color: #000;
+}
