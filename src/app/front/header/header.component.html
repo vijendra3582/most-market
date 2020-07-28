@@ -3,12 +3,13 @@
         <div class="containersd">
             <div class="col-md-2">
                 <div class="logo_sec">
-                    <img src="assets/images/logos.png" />
+                    <a routerLink="/"><img src="assets/images/logos.png" /></a>
                 </div>
             </div>
             <div class="col-md-7 nopadding_no_nopadding_no">
-                <div class="input-group only__innerpages">
-                    <div class="input-group-btn search-panel">
+                <form [formGroup]="searchForm">
+                    <div class="input-group only__innerpages">
+                        <!-- <div class="input-group-btn search-panel">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <span id="search_concept">Filter by</span> <span class="caret"></span>
                         </button>
@@ -20,21 +21,44 @@
                             <li class="divider"></li>
                             <li><a href="#all">Anything</a></li>
                         </ul>
+                    </div> -->
+                        <input type="text" class="form-control" formControlName="query" placeholder="Search term...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default search__button" type="submit" [disabled]="!searchForm.valid" (click)="search()">Search</button>
+                        </span>
                     </div>
-                    <input type="hidden" name="search_param" value="all" id="search_param">
-                    <input type="text" class="form-control" name="x" placeholder="Search term...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default search__button" type="button">Search</button>
-                    </span>
-                </div>
+                </form>
             </div>
             <div class="col-md-3">
-                <div class="login_signup">
+                <div class="login_signup" *ngIf="!tokenService.loggedIn">
                     <ul>
-                        <li class="login__user"><a routerLink="/auth/login"><span class="user__icos"><i class="fa fa-user"></i></span>
-                                Login</a></li>
-                        <li class="register_now"><a routerLink="/auth/register"> Register</a></li>
+                        <li class="login__user">
+                            <a routerLink="/auth/login">
+                                <span class="user__icos">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                Login
+                            </a>
+                        </li>
+                        <li class="register_now">
+                            <a routerLink="/auth/register"> Register</a>
+                        </li>
                     </ul>
+                </div>
+                <div class="user-profile" *ngIf="tokenService.loggedIn">
+                    <div class="user-rpodile-logggedin">
+                        <button class="logged-in-menu" type="button" (click)="openMenu()">
+                            {{ tokenService.getUser().name }}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu-user" *ngIf="is_menu_open">
+                            <li><a routerLink="/dashboard">Dashboard</a></li>
+                            <li><a routerLink="/addresses">My Addresses</a></li>
+                            <li><a routerLink="/orders">My Orders</a></li>
+                            <li><a routerLink="/profile">My Profile</a></li>
+                            <li><a routerLink="/wishlists">My Wishlists</a></li>
+                            <li><a (click)="logout()">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

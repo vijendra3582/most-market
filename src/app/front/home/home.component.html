@@ -4,8 +4,9 @@
         <div class="fields-container">
             <h3>Find the best restaurants, cafés, and bars in Delhi NCR </h3>
             <div class="col-xs-12">
-                <div class="input-group">
-                    <div class="input-group-btn search-panel">
+                <form [formGroup]="searchForm">
+                    <div class="input-group">
+                        <!-- <div class="input-group-btn search-panel">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <span id="search_concept">Filter by</span> <span class="caret"></span>
                         </button>
@@ -17,23 +18,26 @@
                             <li class="divider"></li>
                             <li><a href="#all">Anything</a></li>
                         </ul>
+                    </div> -->
+                        <input type="text" class="form-control" formControlName="query" placeholder="Search term...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default search__button" type="submit" [disabled]="!searchForm.valid" (click)="search()">Search</button>
+                        </span>
                     </div>
-                    <input type="hidden" name="search_param" value="all" id="search_param">
-                    <input type="text" class="form-control" name="x" placeholder="Search term...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default search__button" type="button">Search</button>
-                    </span>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
 <section class="slide_section">
     <div class="container">
-        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="vendorSlidesConfig">
-            <div ngxSlickItem *ngFor="let slide of vendorSlides" class="slide">
-                <img src="{{ slide.image }}" alt="" width="100%">
-                <span class="slide-title">{{ slide.title }}</span>
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="homeSliderConfig">
+            <div ngxSlickItem *ngFor="let slide of homeSlider" class="slide">
+                <a routerLink="/vendor/{{ slide.slug }}">
+                    <img src="http://localhost:8080/uploads/thumbs/{{ parse(slide.image) }}" alt="{{ slide.title }}"
+                        width="100%">
+                    <span class="slide-title">{{ slide.title }}</span>
+                </a>
             </div>
         </ngx-slick-carousel>
     </div>
@@ -54,7 +58,8 @@
                     </div>
                     <div class="t___0">
                         <h3>Choose What To Do</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour </p>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
+                            suffered alteration in some form, by injected humour </p>
                     </div>
                 </div>
             </div>
@@ -68,7 +73,8 @@
                     </div>
                     <div class="t___0">
                         <h3>Choose What To Do</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour </p>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
+                            suffered alteration in some form, by injected humour </p>
                     </div>
                 </div>
             </div>
@@ -82,7 +88,8 @@
                     </div>
                     <div class="t___0">
                         <h3>Choose What To Do</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour </p>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
+                            suffered alteration in some form, by injected humour </p>
                     </div>
                 </div>
             </div>
@@ -95,23 +102,15 @@
             <h3><span class="bold_0">Browse by </span> cuisine</h3>
         </div>
         <ul class="resto_css">
-            <li><span class="re_icon"><img src="assets/images/a1.png" /></span>
-                <h6 class="bb_qre"><span>BB.Q</span></h6>
-            </li>
-            <li><span class="re_icon"><img src="assets/images/a2.png" /></span>
-                <h6 class="bb_qre"><span>BB.Q</span></h6>
-            </li>
-            <li><span class="re_icon"><img src="assets/images/a3.png" /></span>
-                <h6 class="bb_qre"><span>BreakFast</span></h6>
-            </li>
-            <li><span class="re_icon"><img src="assets/images/a4.png" /></span>
-                <h6 class="bb_qre"><span>Delivery</span></h6>
-            </li>
-            <li><span class="re_icon"><img src="assets/images/a5.png" /></span>
-                <h6 class="bb_qre"><span>Dinner</span></h6>
-            </li>
-            <li><span class="re_icon"><img src="assets/images/a6.png" /></span>
-                <h6 class="bb_qre"><span>Take Away</span></h6>
+            <li *ngFor="let cuisine of homeCuisine">
+                <a routerLink="/category/{{ cuisine.slug }}">
+                    <span class="re_icon">
+                        <img src="assets/images/a1.png" />
+                    </span>
+                    <h6 class="bb_qre">
+                        <span>{{cuisine.name }}</span>
+                    </h6>
+                </a>
             </li>
         </ul>
     </div>
@@ -119,14 +118,17 @@
 <section class="chooespopular_res">
     <div class="container">
         <div class="all__heading">
-            <h3 style="color: #fff; margin-left: 11px;"><span class="bold_0">Choose from </span> Most Popular</h3>
+            <h3><span class="bold_0">Choose from </span> Most Popular</h3>
         </div>
-        <div class="col-md-4 col-xs-6 grid-listing-col ">
+        <div class="col-md-4 col-xs-6 grid-listing-col" *ngFor="let popular of homePopular">
             <div class="s_col_col_1">
                 <div class="img-holder">
                     <figure>
-                        <a href="#">
-                            <img src="http://foodbakery.chimpgroup.com/homev1/wp-content/uploads/cover-photo20-359x212.jpg" class="attachment-foodbakery_media_8 size-foodbakery_media_8" alt="" width="359" height="212"> </a>
+                        <a routerLink="/vendor/{{ popular.slug }}">
+                            <img src="http://localhost:8080/uploads/thumbs/{{ parse(popular.logo) }}"
+                                class="attachment-foodbakery_media_8 size-foodbakery_media_8" alt="{{ popular.name }}"
+                                width="359px" height="212px">
+                        </a>
                         <figcaption class="listing-meta">
                             <div class="listing-inner clearfix">
                                 <div class="list-rating">
@@ -146,125 +148,22 @@
                 </div>
                 <div class="text-holder">
                     <div class="listing-inner">
-                        <h4><a href="#">Nature Healthy Food</a></h4>
-                        <p>Apple Juice, Beef Roast, Cheese Burger</p>
+                        <h4><a routerLink="/vendor/{{ popular.slug }}">{{ popular.name }}</a></h4>
                         <div class="min-order">
                             Min Order <span class="price">£15.00</span>
                         </div>
                     </div>
                     <div class="listing-footer">
                         <div class="listing-inner clearfix">
-                            <div class="img-holder">
-                                <a href="#">
-                                    <img src="http://foodbakery.chimpgroup.com/homev1/wp-content/uploads/listing-logo03.png" class="img-thumb wp-post-image" alt=""> </a>
-                            </div>
                             <div class="text-holder">
-                                <p>Bristol, Bristol</p>
-                                <p class="deliver-time"><span class="icon-motorcycle2"><img
-                                            src="assets/images/sd.png" /></span>10 min</p>
-                                <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png" /></span>15 min
+                                <p class="add-popular-h">{{ truncate(popular.address) }}</p>
+                                <p class="pickup-time">
+                                    <span class="icon-clock4">
+                                        <img src="assets/images/click.png" />
+                                    </span>
+                                    15 min
                                 </p>
-                                <a href="#" class="ordernow-btn bgcolor">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-xs-6 grid-listing-col ">
-            <div class="s_col_col_1">
-                <div class="img-holder">
-                    <figure>
-                        <a href="#">
-                            <img src="http://foodbakery.chimpgroup.com/homev1/wp-content/uploads/cover-photo20-359x212.jpg" class="attachment-foodbakery_media_8 size-foodbakery_media_8" alt="" width="359" height="212"> </a>
-                        <figcaption class="listing-meta">
-                            <div class="listing-inner clearfix">
-                                <div class="list-rating">
-                                    <div class="rating-star">
-                                        <ul class="start_o">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="text-holder">
-                    <div class="listing-inner">
-                        <h4><a href="#">Nature Healthy Food</a></h4>
-                        <p>Apple Juice, Beef Roast, Cheese Burger</p>
-                        <div class="min-order">
-                            Min Order <span class="price">£15.00</span>
-                        </div>
-                    </div>
-                    <div class="listing-footer">
-                        <div class="listing-inner clearfix">
-                            <div class="img-holder">
-                                <a href="#">
-                                    <img src="http://foodbakery.chimpgroup.com/homev1/wp-content/uploads/listing-logo03.png" class="img-thumb wp-post-image" alt=""> </a>
-                            </div>
-                            <div class="text-holder">
-                                <p>Bristol, Bristol</p>
-                                <p class="deliver-time"><span class="icon-motorcycle2"><img
-                                            src="assets/images/sd.png" /></span>10 min</p>
-                                <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png" /></span>15 min
-                                </p>
-                                <a href="#" class="ordernow-btn bgcolor">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-xs-6 grid-listing-col ">
-            <div class="s_col_col_1">
-                <div class="img-holder">
-                    <figure>
-                        <a href="#">
-                            <img src="http://foodbakery.chimpgroup.com/homev1/wp-content/uploads/cover-photo20-359x212.jpg" class="attachment-foodbakery_media_8 size-foodbakery_media_8" alt="" width="359" height="212"> </a>
-                        <figcaption class="listing-meta">
-                            <div class="listing-inner clearfix">
-                                <div class="list-rating">
-                                    <div class="rating-star">
-                                        <ul class="start_o">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="text-holder">
-                    <div class="listing-inner">
-                        <h4><a href="#">Nature Healthy Food</a></h4>
-                        <p>Apple Juice, Beef Roast, Cheese Burger</p>
-                        <div class="min-order">
-                            Min Order <span class="price">£15.00</span>
-                        </div>
-                    </div>
-                    <div class="listing-footer">
-                        <div class="listing-inner clearfix">
-                            <div class="img-holder">
-                                <a href="#">
-                                    <img src="http://foodbakery.chimpgroup.com/homev1/wp-content/uploads/listing-logo03.png" class="img-thumb wp-post-image" alt=""> </a>
-                            </div>
-                            <div class="text-holder">
-                                <p>Bristol, Bristol</p>
-                                <p class="deliver-time"><span class="icon-motorcycle2"><img
-                                            src="assets/images/sd.png" /></span>10 min</p>
-                                <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png" /></span>15 min
-                                </p>
-                                <a href="#" class="ordernow-btn bgcolor">Order Now</a>
+                                <a routerLink="/vendor/{{ popular.slug }}" class="ordernow-btn bgcolor">Order Now</a>
                             </div>
                         </div>
                     </div>
@@ -273,7 +172,7 @@
         </div>
     </div>
 </section>
-<section class="s_g_l_u_section browse_browse">
+<!-- <section class="s_g_l_u_section browse_browse">
     <div class="container">
         <div class="all__heading">
             <h3><span class="bold_0">Top </span> Restaurants</h3>
@@ -293,225 +192,40 @@
             <li><span class="re_icon"><img src="assets/images/r8.png" /></span> </li>
         </ul>
     </div>
-</section>
+</section> -->
 <section class="most_popular">
     <div class="container">
         <div class="all__heading">
             <h3><span class="bold_0">Choose </span> From Most Popular</h3>
         </div>
         <ul class="popularr">
-            <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let popular of homeMostPopulor">
                 <div class="list-post featured">
                     <div class="img-holder">
                         <figure>
-                            <a href="#">
-                                <img src="assets/images/r1.jpg" class="img-thumb wp-post-image" alt="" sizes="(max-width: 125px) 100vw, 125px"> </a>
+                            <a routerLink="/vendor/{{ popular.vendor }}">
+                                <img src="http://localhost:8080/uploads/thumbs/{{ parse(popular.logo) }}"
+                                    class="img-thumb wp-post-image" alt="{{ popular.name }}"
+                                    sizes="(max-width: 125px) 100vw, 125px"> </a>
                         </figure>
                         <span class="restaurant-status open"><em class="bookmarkRibbon"></em>Open</span>
                     </div>
                     <div class="text-holder">
                         <div class="post-title">
                             <h5>
-                                <a href="#">Golden Chick Fries</a>
+                                <a routerLink="/vendor/{{ popular.vendor }}">{{ popular.name }}</a>
                             </h5>
                         </div>
                         <address class="tyype_ee"> <span>Type of food : </span> Doughnut, Hot Dogs, Ice Cream</address>
                         <div class="text-holder_ll">
-                            <p class="pickup-time"><span class="icon-motorcycle2"><img src="assets/images/sd.png"></span>10 min
+                            <p class="pickup-time"><span class="icon-motorcycle2"><img
+                                        src="assets/images/sd.png"></span>10 min
                             </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
+                            <p class="pickup-time"><span class="icon-clock4"><img
+                                        src="assets/images/click.png"></span>15 min
                             </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                        </div>
-                        <div class="list-rating">
-                            <div class="rating-star">
-                                <ul class="start_o">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="list-post featured">
-                    <div class="img-holder">
-                        <figure>
-                            <a href="#">
-                                <img src="assets/images/r2.jpg" class="img-thumb wp-post-image" alt="" sizes="(max-width: 125px) 100vw, 125px"> </a>
-                        </figure>
-                        <span class="restaurant-status open"><em class="bookmarkRibbon"></em>Open</span>
-                    </div>
-                    <div class="text-holder">
-                        <div class="post-title">
-                            <h5>
-                                <a href="#">Golden Chick Fries</a>
-                            </h5>
-                        </div>
-                        <address class="tyype_ee"> <span>Type of food : </span> Doughnut, Hot Dogs, Ice Cream</address>
-                        <div class="text-holder_ll">
-                            <p class="pickup-time"><span class="icon-motorcycle2"><img src="assets/images/sd.png"></span>10 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                        </div>
-                        <div class="list-rating">
-                            <div class="rating-star">
-                                <ul class="start_o">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="list-post featured">
-                    <div class="img-holder">
-                        <figure>
-                            <a href="#">
-                                <img src="assets/images/r3.jpg" class="img-thumb wp-post-image" alt="" sizes="(max-width: 125px) 100vw, 125px"> </a>
-                        </figure>
-                        <span class="restaurant-status open"><em class="bookmarkRibbon"></em>Open</span>
-                    </div>
-                    <div class="text-holder">
-                        <div class="post-title">
-                            <h5>
-                                <a href="#">Golden Chick Fries</a>
-                            </h5>
-                        </div>
-                        <address class="tyype_ee"> <span>Type of food : </span> Doughnut, Hot Dogs, Ice Cream</address>
-                        <div class="text-holder_ll">
-                            <p class="pickup-time"><span class="icon-motorcycle2"><img src="assets/images/sd.png"></span>10 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                        </div>
-                        <div class="list-rating">
-                            <div class="rating-star">
-                                <ul class="start_o">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="list-post featured">
-                    <div class="img-holder">
-                        <figure>
-                            <a href="#">
-                                <img src="assets/images/r4.jpg" class="img-thumb wp-post-image" alt="" sizes="(max-width: 125px) 100vw, 125px"> </a>
-                        </figure>
-                        <span class="restaurant-status open"><em class="bookmarkRibbon"></em>Open</span>
-                    </div>
-                    <div class="text-holder">
-                        <div class="post-title">
-                            <h5>
-                                <a href="#">Golden Chick Fries</a>
-                            </h5>
-                        </div>
-                        <address class="tyype_ee"> <span>Type of food : </span> Doughnut, Hot Dogs, Ice Cream</address>
-                        <div class="text-holder_ll">
-                            <p class="pickup-time"><span class="icon-motorcycle2"><img src="assets/images/sd.png"></span>10 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                        </div>
-                        <div class="list-rating">
-                            <div class="rating-star">
-                                <ul class="start_o">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="list-post featured">
-                    <div class="img-holder">
-                        <figure>
-                            <a href="#">
-                                <img src="assets/images/r5.png" class="img-thumb wp-post-image" alt="" sizes="(max-width: 125px) 100vw, 125px"> </a>
-                        </figure>
-                        <span class="restaurant-status open"><em class="bookmarkRibbon"></em>Open</span>
-                    </div>
-                    <div class="text-holder">
-                        <div class="post-title">
-                            <h5>
-                                <a href="#">Golden Chick Fries</a>
-                            </h5>
-                        </div>
-                        <address class="tyype_ee"> <span>Type of food : </span> Doughnut, Hot Dogs, Ice Cream</address>
-                        <div class="text-holder_ll">
-                            <p class="pickup-time"><span class="icon-motorcycle2"><img src="assets/images/sd.png"></span>10 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                        </div>
-                        <div class="list-rating">
-                            <div class="rating-star">
-                                <ul class="start_o">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="list-post featured">
-                    <div class="img-holder">
-                        <figure>
-                            <a href="#">
-                                <img src="assets/images/r6.png" class="img-thumb wp-post-image" alt="" sizes="(max-width: 125px) 100vw, 125px"> </a>
-                        </figure>
-                        <span class="restaurant-status open"><em class="bookmarkRibbon"></em>Open</span>
-                    </div>
-                    <div class="text-holder">
-                        <div class="post-title">
-                            <h5>
-                                <a href="#">Golden Chick Fries</a>
-                            </h5>
-                        </div>
-                        <address class="tyype_ee"> <span>Type of food : </span> Doughnut, Hot Dogs, Ice Cream</address>
-                        <div class="text-holder_ll">
-                            <p class="pickup-time"><span class="icon-motorcycle2"><img src="assets/images/sd.png"></span>10 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
-                            </p>
-                            <p class="pickup-time"><span class="icon-clock4"><img src="assets/images/click.png"></span>15 min
+                            <p class="pickup-time"><span class="icon-clock4"><img
+                                        src="assets/images/click.png"></span>15 min
                             </p>
                         </div>
                         <div class="list-rating">

@@ -18,10 +18,152 @@
     float: left;
     width: 100%;
     text-align: center;
+    text-transform: capitalize;
 }
 
 .slick-prev:before,
 .slick-next:before {
     font-size: 26px;
     color: #000;
+}
+
+body {
+    user-select: none;
+}
+
+form {
+    float: left;
+    width: 100%;
+}
+
+.form-group {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.form-control {
+    border: 1.3px solid lightgray;
+    box-shadow: none;
+    padding: 5px 10px;
+    transition: 0s;
+}
+
+.form-group label {
+    float: left;
+    width: 100%;
+    font-weight: 600;
+}
+
+.remember label {
+    float: left;
+    width: auto;
+    cursor: pointer;
+}
+
+.remember input {
+    float: left;
+    width: auto !important;
+    height: auto !important;
+    margin-right: 1rem;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.form-submit-button {
+    padding: 7px 33px;
+    font-weight: 500;
+    border-radius: 3px;
+    background: #2196f3;
+    border: 0;
+}
+
+.user-profile {
+    float: right;
+    padding-top: 1.2rem;
+}
+
+.user-rpodile-logggedin {
+    width: 153px;
+    position: relative;
+}
+
+button.logged-in-menu {
+    padding: 5px 10px;
+    border: 0;
+    width: 100%;
+}
+
+button.logged-in-menu span.caret {
+    margin-left: 10px;
+}
+
+ul.dropdown-menu-user {
+    position: absolute;
+    background: #fff;
+    padding: 14px;
+    border-radius: 3px;
+    margin-top: 0;
+    width: 100%;
+}
+
+ul.dropdown-menu-user li {
+    padding: 5px 8px;
+}
+
+ul.dropdown-menu-user li a {
+    color: #000;
+    cursor: pointer;
+}
+
+.cross.price-listing {
+    text-decoration: line-through;
+    margin-right: 1rem;
+}
+
+.price-listing {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.cross.price-listing i {
+    text-decoration: line-through;
+}
+
+.price-listing i {
+    font-size: 1.3rem;
+    margin-right: 2px;
+}
+
+.filter-div {
+    float: left;
+    width: 100%;
+    ul {
+        float: left;
+        width: 100%;
+        li {
+            float: left;
+            width: 100%;
+            input {
+                cursor: pointer;
+                margin-right: 1rem;
+                margin-top: 0px;
+                vertical-align: middle;
+            }
+            label {
+                cursor: pointer;
+                margin-top: 0px;
+                font-weight: normal;
+            }
+        }
+    }
+}
+
+.filter-part {
+    float: left;
+    width: 100%;
+    margin-bottom: 2rem;
+    h5{
+        font-weight: 600;
+    }
 }

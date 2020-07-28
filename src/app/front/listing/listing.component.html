@@ -1,1 +1,113 @@
-<p>listing works!</p>
+<section class="show__listing_page">
+    <div class="col-md-3">
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <h4>Filter Products</h4>
+                <div class="sidebar-menu filter-div">
+                    <div class="filter-part">
+                        <h5>Category</h5>
+                        <ul>
+                            <li *ngFor="let category of categories">
+                                <input [checked]="selected_categories.includes(category.id)" type="checkbox" id="filter-category-{{ category.id }}" (change)="selectCategory($event.target.checked, category.id)">
+                                <label for="filter-category-{{ category.id }}">{{ category.name }}</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="filter-part">
+                        <h5>Brand</h5>
+                        <ul>
+                            <li *ngFor="let brand of brands">
+                                <input type="checkbox" id="filter-brand-{{ brand.id }}" (change)="selectBrand($event.target.checked, brand.id)">
+                                <label for="filter-brand-{{ brand.id }}">{{ brand.name }}</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="col-md-9 border__0">
+        <div class="right__side__showing">
+            <div class="section__one">
+                <div class="all__heading">
+                    <h3><span class="bold_0">Most popular near you </span> {{ most_popular.length }} vendors</h3>
+                </div>
+                <div class="most-popular___s">
+                    <ul>
+                        <li *ngFor="let popular of most_popular">
+                            <div class="most__populer__0">
+                                <div class="most__p__img">
+                                    <img src="http://localhost:8080/uploads/thumbs/{{ parse(popular.logo) }}"
+                                        alt="{{ popular.name }}" width="90%">
+                                </div>
+                                <div class="c__heading">
+                                    <span class="h__0">{{ popular.name }}</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section__two___w">
+                <div class="all__heading">
+                    <h3><span class="bold_0">Offers near you </span> {{ products.length }} products</h3>
+                </div>
+                <div class="product-list-view">
+                    <div class="product__infoooe" *ngFor="let product of products">
+                        <div class="product-list-info">
+                            <div class="product-list-img">
+                                <a routerLink="/vendor/{{ product.vendor_slug }}">
+                                    <img src="http://localhost:8080/uploads/thumbs/{{ parse(product.logo) }}"
+                                        class="img-fluid" alt="{{ product.name }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-right-col">
+                            <div class="product-list-details">
+                                <div class="product-list-title">
+                                    <div class="product-info">
+                                        <h6><a routerLink="/vendor/{{ product.vendor_slug }}"
+                                                class="text-light-black fw-600">{{ product.name }}</a>
+                                        </h6>
+                                        <p class="text-light-white fs-12">{{ product.vendor_name }}</p>
+                                        <p class="location">{{ product.vendor_address }}</p>
+                                    </div>
+                                </div>
+                                <div class="product-detail-right-box">
+                                    <div class="product-price-icon">
+                                        <span class="text-success fs-16 cross price-listing"><i class="fa fa-inr"
+                                                aria-hidden="true"></i>{{ product.sale_price }}</span>
+                                        <span class="text-success fs-16 price-listing"><i class="fa fa-inr"
+                                                aria-hidden="true"></i>{{ product.discount_price }}</span>
+                                    </div>
+                                    <div class="product-list-label"> <span
+                                            class="rectangle-tag bg-gradient-red text-custom-white">Order Now</span>
+                                        <span class="rectangle-tag bg-dark text-custom-white">Combo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="s_g_l_u_section browse_browse">
+    <div class="container">
+        <div class="all__heading">
+            <h3><span class="bold_0">Top </span> Restaurants</h3>
+        </div>
+        <div class="element-title align-left">
+            <h2> </h2>
+            <p>Discover restaurants by type of meal</p>
+        </div>
+        <ul class="resto_css_restaurants">
+            <li *ngFor="let t of top">
+                <span class="re_icon">
+                    <img src="http://localhost:8080/uploads/thumbs/{{ parse(t.logo) }}">
+                </span>
+            </li>
+        </ul>
+    </div>
+</section>

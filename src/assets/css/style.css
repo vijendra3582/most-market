@@ -8,7 +8,6 @@ body {
     letter-spacing: 0px;
     text-transform: none;
     color: #515151 !important;
-    font-size: 14px;
 }
 
 html,
@@ -577,20 +576,20 @@ footer {
     font-size: 12px !important;
 }
 
-.social-media li a {
-    background: #999;
-    width: 25px;
-    display: inline-block;
-    text-align: center;
-    height: 25px;
-    line-height: 73px;
-    padding-top: 5px;
-    border-radius: 57%;
-}
-
 .social-media li {
     display: inline-block;
     margin-right: 3px;
+}
+
+.social-media li a {
+    background: #999;
+    width: 27px;
+    display: inline-block;
+    text-align: center;
+    height: 27px;
+    line-height: 73px;
+    padding-top: 0;
+    border-radius: 57%;
 }
 
 .lower-footer {
@@ -1340,6 +1339,7 @@ small {
     color: #000;
     font-size: 20px;
     font-weight: 900;
+    text-transform: capitalize;
 }
 
 .listing-inner p {
@@ -1376,8 +1376,10 @@ small {
     float: right;
     background: #86202b;
     color: #fff;
-    padding: 6px 14px 7px 13px;
-    margin-top: -14px;
+    padding: 1px 10px;
+    margin-top: -0;
+    width: auto;
+    height: auto;
 }
 
 .icon-clock4 img {
@@ -1423,6 +1425,7 @@ small {
 
 .listing-footer .text-holder {
     background: transparent;
+    width: 100%;
 }
 
 .s_col_col_1 {
@@ -2673,6 +2676,7 @@ label {
     display: flex;
     justify-content: space-between;
     width: 60%;
+    padding-left: 20px;
 }
 
 .text-center {
@@ -3012,7 +3016,7 @@ span.rectangle-tag {
     text-align: center;
     height: 26px;
     width: 26px;
-    padding-top: 8px;
+    padding-top: 3px;
     padding-left: 7px;
     margin-left: -9px;
 }
@@ -3087,6 +3091,7 @@ span.rectangle-tag {
     user-select: none;
     position: relative;
     top: -1px;
+    cursor: pointer;
 }
 
 .item-price-container {
@@ -3150,10 +3155,7 @@ form #input-wrap {
 .form__0__s {
     float: left;
     width: 100%;
-}
-
-.form__0__s {
-    margin-top: -12px;
+    margin-top: 2rem;
     margin-bottom: 29px;
 }
 
@@ -3289,38 +3291,6 @@ a.social_bt.facebook {
     display: inline-block;
     padding: 10px;
     font-style: italic;
-}
-
-.login__pages .form-group {
-    position: relative;
-}
-
-.login__pages .form-control {
-    padding: 10px;
-    height: 40px;
-    font-size: 14px;
-    font-size: 0.875rem;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    border-radius: 3px;
-    border: 1px solid #d2d8dd;
-}
-
-.login__pages .form-control {
-    display: block;
-    width: 100%;
-    height: 40px;
-    padding: .375rem .75rem;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 3.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .login__pages {
@@ -4017,4 +3987,9 @@ a.social_bt.facebook {
     font-size: 15px;
     text-align: justify;
     line-height: 27px;
+}
+p.add-popular-h {
+    float: left;
+    width: 100%;
+    margin-bottom: 1rem;
 }

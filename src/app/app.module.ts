@@ -24,7 +24,7 @@ import { userComponents } from './user/user.pages';
     BrowserModule,
     HttpClientModule,
     UIKitModule,
-    RouterModule.forRoot(frontRoutes),
+    RouterModule.forRoot(frontRoutes, { scrollPositionRestoration: 'enabled' }),
     FormsModule,
     BrowserAnimationsModule, 
     SlickCarouselModule

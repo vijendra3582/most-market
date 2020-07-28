@@ -9,30 +9,40 @@
                         </div>
                     </div>
                     <div class="main">
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Email Address">
-                            <i class="icon_mail"></i>
-                        </div>
-                        <div class="form-group add_bottom_15">
-                            <div class="hideShowPassword-wrapper">
-                                <input class="form-control" placeholder="Password" id="password_sign" name="password_sign" autocomplete="off" spellcheck="true" type="password" style="margin: 0px; padding-right: 51.1px;">
-                                <button type="button" role="button" aria-label="Show Password" title="Show Password" tabindex="0" class="my-toggle hideShowPassword-toggle-show" style="position: absolute; right: 0px; top: 50%; margin-top: -15px; display: none;" aria-pressed="false">Show</button>
-                                <div class="checkbox-block">
-                                    <input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox">
-                                    <label class="" for="remember_me_checkbox">Remember me</label>
-                                </div>
+                        <form [formGroup]="loginForm" class="login-form" autocomplete="off">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" formControlName="email"
+                                    placeholder="Email Address" autocomplete="off" value="" autofocus>
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.email"
+                                    [control]="loginForm.get('email')"></app-field-error>
                             </div>
-                            <i class="icon_lock"></i>
-                        </div>
-                        <a href="#" class="btn_1 full-width mb_5">Sign Now</a>
-                        <div class="divider">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" formControlName="password"
+                                    placeholder="Password" value="" autocomplete="off">
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.password"
+                                    [control]="loginForm.get('password')"></app-field-error>
+                            </div>
+                            <div class="form-group remember">
+                                <input type="checkbox" id="remember" class="form-control" formControlName="remember">
+                                <label for="remember"> Remember Me</label>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary form-submit-button" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+                            </div>
+                        </form>
+                        <!-- <div class="divider">
                             <span>Or</span>
                         </div>
                         <a href="#0" class="social_bt facebook">Login with Facebook</a>
                         <a href="#0" class="social_bt google">Login with Google</a>
                         <p class="sh__00">
                             <a href="signup.php" class="ritekhana-color">Signup Now</a>
-                        </p>
+                        </p> -->
+                        <div class="register-link">
+                            <label for="">Don't have account ? </label><a routerLink="/auth/register"> Create new account</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,1 +1,176 @@
-<p>single works!</p>
+<section class="single__listing__page">
+    <div class="container">
+        <div class="col-md-8">
+            <div class="showing__listing___page">
+                <div class="reating__food__0">
+                    <div class="only__heading__part" *ngIf="vendor">
+                        <div class="col-md-10">
+                            <div class="small__he">
+                                <small>Order food online from</small>
+                                <h3 class="mainheading">{{ vendor.name }}</h3>
+                                <p>{{ vendor.address }}</p>
+                                <p>•Costs ₹900.00 for two</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="o2header-resrating">4.1</div>
+                        </div>
+                    </div>
+                    <div class="delivery__time__table">
+                        <ul class="develary__list">
+                            <li>
+                                <div class="first_small">
+                                    <small>Delivery Time</small>
+                                </div>
+                                <div class="time__for__big">
+                                    <h3>48 mins</h3>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="first_small">
+                                    <small>Minimum Order</small>
+                                </div>
+                                <div class="time__for__big">
+                                    <h3>₹50.00</h3>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="first_small">
+                                    <small>Payment Methods</small>
+                                </div>
+                                <div class="time__for__big">
+                                    <h3>Cash &amp; Online</h3>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="first_small">
+                                    <small>Recent Order Rating</small>
+                                </div>
+                                <div class="time__for__big">
+                                    <h3>Streak</h3>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="prsent__w">
+                        <img src="assets/images/g__0.png">
+                    </div>
+                </div>
+                <div class="section__by__sectionf" *ngIf="products.length">
+                    <div class="best__selling__s">
+                        <div class="h__eading__09">
+                            <h3>Bestsellers</h3>
+                            <div class="category_heading">Starters</div>
+                        </div>
+                        <div class="all__listing__page">
+                            <div class="product__infoooe" *ngFor="let product of products">
+                                <div class="product-list-info">
+                                    <div class="product-list-img">
+                                        <a href="javascript:void(0);">
+                                            <img src="http://localhost:8080/uploads/thumbs/{{ parse(product.logo) }}"
+                                                class="img-fluid" alt="#">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-right-col">
+                                    <div class="product-list-details">
+                                        <div class="product-list-title">
+                                            <div class="product-info">
+                                                <h6><a href="#" class="text-light-black fw-600">{{ product.name }}</a>
+                                                </h6>
+                                                <p class="text-light-white fs-12">{{ vendor.name }}</p>
+                                                <p class="price">
+                                                    <span class="line-through pr10">₹{{ product.sale_price }}</span>
+                                                </p>
+                                                <p class="location">{{ vendor.address }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="product-detail-right-box">
+                                            <div class="product-list-label add__0">
+                                                <span class="rectangle-tag bg-gradient-red text-custom-white"
+                                                    (click)="add(product)" *ngIf="!checkCart(product)">Add</span>
+                                                    
+                                                <span class="rectangle-tag bg-gradient-red text-custom-white"
+                                                    (click)="remove(product)" *ngIf="checkCart(product)">Remove</span>
+                                                <!-- <span class="rectangle-tag bg-dark text-custom-white customize">customizable</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="right__side__bar__0">
+                <div class="s__99__99">
+                    <h3 class="you___0jhjhj">Your Order</h3>
+                    <ul class="s__tts__s" *ngIf="cartProductList.length">
+                        <li *ngFor="let product of cartProductList">
+                            <div class="col-md-1 pl15">
+                                <div class="nveg tag left" data-icon="ǝ" style="position: relative; top: 0px;"></div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="cont__wwsx">
+                                    <div class="d__00d">
+                                        <h3>{{ product.name }}</h3>
+                                    </div>
+                                    <div class="form__0__s">
+                                        <div class="value-button" id="decrease" (click)="decrement(product)"
+                                            value="Decrease Value">-</div>
+                                        <input type="number" id="number" value="{{ product.quantity }}" disabled>
+                                        <div class="value-button" id="increase" (click)="increment(product)"
+                                            value="Increase Value">+</div>
+                                    </div>
+                                    <div class="item-price-container">
+                                        <span>₹{{ product.sale_price * product.quantity }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="side-bar-bottom cart-summary">
+                    <ul class="totals clear">
+                        <li class="subtotal2 clear" style="border-top: 0px none;">
+                            <span class="name">Subtotal</span>
+                            <span class="price">
+                                <span>
+                                    <span class="line-through pr10">₹{{ getTotalAmout() }}</span>
+                                </span>
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="additional-charges mbot0">(plus taxes)</div>
+                    <div class="special-instructions mbot0"><textarea
+                            placeholder="Enter any additional information about your order. Eg: 'No Mayo!'"
+                            style="max-width: 100%; resize: none;"></textarea></div>
+                    <button class="ui large green fluid button checkout">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="s_g_l_u_section browse_browse">
+    <div class="container">
+        <div class="all__heading">
+            <h3><span class="bold_0">Top </span> Restaurants</h3>
+        </div>
+        <div class="element-title align-left">
+            <h2> </h2>
+            <p>Discover restaurants by type of meal</p>
+        </div>
+        <ul class="resto_css_restaurants">
+            <li><span class="re_icon"><img src="assets/images/r1.jpg"></span> </li>
+            <li><span class="re_icon"><img src="assets/images/r2.jpg"></span> </li>
+            <li><span class="re_icon"><img src="assets/images/r3.jpg"></span> </li>
+            <li><span class="re_icon"><img src="assets/images/r4.jpg"></span> </li>
+            <li><span class="re_icon"><img src="assets/images/r5.png"></span> </li>
+            <li><span class="re_icon"><img src="assets/images/r6.png"></span> </li>
+            <li><span class="re_icon"><img src="assets/images/r7.png"></span> </li>
+            <li><span class="re_icon"><img src="assets/images/r8.png"></span> </li>
+        </ul>
+    </div>
+</section>
