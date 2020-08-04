@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LocationService } from 'src/app/services/location.service';
 import { ValidateNumber } from 'src/app/validations/custom.validators';
 import { TokenService } from 'src/app/services/token.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -27,8 +28,11 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private locationService: LocationService,
     private authService: AuthService,
-    private tokenService: TokenService
-  ) { }
+    private tokenService: TokenService,
+    private titleService: Title
+  ) { 
+    this.titleService.setTitle('Manage Profile - Most Market');
+  }
 
   ngOnInit() {
     this.get();

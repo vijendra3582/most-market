@@ -8,7 +8,8 @@
                             <div class="small__he">
                                 <small>Order food online from</small>
                                 <h3 class="mainheading">{{ vendor.name }}
-                                    <a href="javascript:void(0);" (click)="wishlist()">
+                                    <a href="javascript:void(0);" [ngClass]="{'wishlisted': vendor.is_wishlist}"
+                                        (click)="wishlist()">
                                         <i class="fa fa-heart-o"></i>
                                     </a>
                                 </h3>

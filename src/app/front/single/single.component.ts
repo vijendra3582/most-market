@@ -38,6 +38,7 @@ export class SingleComponent implements OnInit {
   getVendor(slug) {
     this.homeService.getVendor(slug).subscribe((data) => {
       this.vendor = data.data[0];
+      this.getWishlist();
       this.titleService.setTitle(this.vendor.name);
     });
   }
@@ -155,18 +156,29 @@ export class SingleComponent implements OnInit {
     }, 0);
   }
 
+  getWishlist() {
+    this.wishlistService.single(this.vendor.id).subscribe(
+      data => {
+        if (data.data.length)
+          this.vendor.is_wishlist = true;
+        else
+          this.vendor.is_wishlist = false;
+      }
+    );
+  }
+
   wishlist() {
     const data = { "vendor_id": this.vendor.id };
     if (!this.vendor.is_wishlist) {
       this.wishlistService.save(data).subscribe(
         data => {
-          this.vendor = data.data[0];
+          this.getVendor(this.slug);
         }
       )
     } else {
       this.wishlistService.remove(this.vendor.id).subscribe(
         data => {
-          this.vendor = data.data[0];
+          this.getVendor(this.slug);
         }
       )
     }

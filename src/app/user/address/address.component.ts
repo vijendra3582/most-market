@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocationService } from 'src/app/services/location.service';
 import { AddressService } from 'src/app/services/address.service';
 import { ValidateNumber } from 'src/app/validations/custom.validators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-address',
@@ -25,8 +26,11 @@ export class AddressComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private locationService: LocationService,
-    private addressService: AddressService
-  ) { }
+    private addressService: AddressService,
+    private titleService: Title
+  ) { 
+    this.titleService.setTitle('Manage Address - Most Market');
+  }
 
   ngOnInit() {
     this.get();

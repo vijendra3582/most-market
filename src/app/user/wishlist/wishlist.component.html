@@ -1,1 +1,67 @@
-<p>wishlist works!</p>
+<section class="mydashboardpage__12">
+    <div class="container">
+        <app-sidebar></app-sidebar>
+        <div class="col-md-9">
+            <div class="card mb-0">
+                <div class="card-header">
+                    <h3 class="card-title">Manage Wishlist</h3>
+                </div>
+                <div class="row border-bottom ml-0 mr-0">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Name</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="card-body">
+                            <h3 class="card-title">Address</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="card-body">
+                            <h3 class="card-title">Action</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ml-0 mr-0" *ngFor="let vendor of vendors">
+                    <div class="borderhere">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="media mt-0 mb-0">
+                                        <div class="card-aside-img">
+                                            <a routerLink="/vendor/{{ vendor.vendor_slug }}"></a>
+                                            <img src="http://localhost:8080/uploads/thumbs/{{ parse(vendor.vendor_logo) }}" alt="{{ vendor.vendor_name }}">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="card-item-desc ml-4 p-0">
+                                                <a routerLink="/vendor/{{ vendor.vendor_slug }}" class="text-dark">
+                                                    <h4 class="text-over">{{ vendor.vendor_name }}</h4>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="card-body">
+                                <span class="address-wishlist">{{ vendor.vendor_address }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <div class="card-body">
+                                <div class="btn-list">
+                                    <a class="btn ripple  btn-danger btn-sm text-white" (click)="remove(vendor.vendor_id)">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
