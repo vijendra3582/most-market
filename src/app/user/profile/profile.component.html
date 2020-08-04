@@ -1,0 +1,92 @@
+<section class="mydashboardpage__12">
+    <div class="container">
+        <app-sidebar></app-sidebar>
+        <div class="col-md-9">
+            <div class="card mb-0">
+                <div class="card-header">
+                    <h3 class="card-title">Edit Profile</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <form [formGroup]="userForm" class="profile-form">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Name</label>
+                                    <input formControlName="name" id="name" [(ngModel)]="user.name" type="text"
+                                        class="form-control" placeholder="Name">
+                                    <app-field-error [submitted]="submitted" [server_message]="server_message.name"
+                                        [control]="userForm.get('name')"></app-field-error>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input formControlName="email" id="email" [(ngModel)]="user.email" type="email"
+                                        class="form-control" placeholder="Email" disabled>
+                                    <app-field-error [submitted]="submitted" [server_message]="server_message.email"
+                                        [control]="userForm.get('email')"></app-field-error>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="mobile">Mobile</label>
+                                    <input formControlName="mobile" id="mobile" [(ngModel)]="user.mobile" type="text"
+                                        class="form-control" placeholder="Mobile">
+                                    <app-field-error [submitted]="submitted" [server_message]="server_message.mobile"
+                                        [control]="userForm.get('mobile')"></app-field-error>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="address">Address</label>
+                                    <textarea class="form-control" id="address" formControlName="address"
+                                        [(ngModel)]="user.address"></textarea>
+                                    <app-field-error [submitted]="submitted" [server_message]="server_message.address"
+                                        [control]="userForm.get('address')"></app-field-error>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="state">State</label>
+                                    <select class="form-control" id="state" formControlName="state"
+                                        [(ngModel)]="user.state" (change)="getCity()">
+                                        <option value="">Select State</option>
+                                        <option *ngFor="let option of states.states" value="{{option.id}}">
+                                            {{ option.name }}</option>
+                                    </select>
+                                    <app-field-error [submitted]="submitted" [server_message]="server_message.state"
+                                        [control]="userForm.get('state')"></app-field-error>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="city">City</label>
+                                    <select class="form-control" id="city" formControlName="city"
+                                        [(ngModel)]="user.city">
+                                        <option value="">Select City</option>
+                                        <option *ngFor="let option of cities.cities" value="{{option.id}}">
+                                            {{ option.name }}</option>
+                                    </select>
+                                    <app-field-error [submitted]="submitted" [server_message]="server_message.city"
+                                        [control]="userForm.get('city')"></app-field-error>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="profession">Profession</label>
+                                    <input formControlName="profession" id="profession" [(ngModel)]="user.profession" type="text"
+                                        class="form-control" placeholder="Profession">
+                                    <app-field-error [submitted]="submitted" [server_message]="server_message.profession"
+                                        [control]="userForm.get('profession')"></app-field-error>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn ripple  btn-secondary" [disabled]="!userForm.valid" nz-button nzType="primary" (click)="submit()">Update Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,63 @@
+<div class="col-md-3">
+    <div class="dashboard__sa">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">My Dashboard</h3>
+            </div>
+            <div class="card-body text-center item-user border-bottom">
+                <div class="profile-pic">
+                    <!-- <div class="profile-pic-img mb-4">
+                        <img src="images/cuisine2.jpg" class="brround" alt="user">
+                    </div> -->
+                    <!-- <a href="javascript:void(0);" class="text-dark">
+                        <h4 class="mt-3 mb-0 font-weight-semibold">{{ user.name }}</h4>
+                    </a> -->
+                </div>
+            </div>
+            <div class="item1-links  mb-0">
+                <ul>
+                    <li>
+                        <a routerLink="/user/profile" [ngClass]="{'active': url == 'profile'}" class="d-flex border-bottom">
+                            <span class="icon1 mr-3">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            Edit Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/user/wishlist" [ngClass]="{'active': url == 'wishlist'}" class="d-flex border-bottom">
+                            <span class="icon1 mr-3">
+                                <i class="fa fa-heart"></i>
+                            </span>
+                            My Wishlist
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/user/order" [ngClass]="{'active': url == 'order'}" class="d-flex  border-bottom">
+                            <span class="icon1 mr-3">
+                                <i class="fa fa-shopping-cart"></i>
+                            </span>
+                            My Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/user/address" [ngClass]="{'active': url == 'address'}" class="d-flex  border-bottom">
+                            <span class="icon1 mr-3">
+                                <i class="fa fa-map-marker"></i>
+                            </span>
+                            My Address
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" (click)="logout()" class="d-flex border-bottom">
+                            <span class="icon1 mr-3">
+                                <i class="fa fa-sign-out"></i>
+                            </span>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -55,4 +55,15 @@ export class TokenService {
     getUser(){
         return this.userInfo ? this.userInfo.user: '';
     }
+
+    getStorage(){
+        return this.userInfo ? this.userInfo: '';
+    }
+
+    updateUser(data){
+        let userInfo = this.getStorage();
+        userInfo.user = data;
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        this.afterLogin.next();
+    }
 }

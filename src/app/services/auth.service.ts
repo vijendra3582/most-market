@@ -17,6 +17,14 @@ export class AuthService {
         return this.api.post('auth/user/register', data);
     }
 
+    me() {
+        return this.api.get('auth/user/me');
+    }
+
+    profile(data) {
+        return this.api.post('auth/user/update', data);
+    }
+
     resendVerification(data) {
         return this.api.post('auth/user/resend-verification', data);
     }

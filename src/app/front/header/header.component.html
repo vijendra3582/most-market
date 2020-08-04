@@ -51,11 +51,10 @@
                             {{ tokenService.getUser().name }}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu-user" *ngIf="is_menu_open">
-                            <li><a routerLink="/dashboard">Dashboard</a></li>
-                            <li><a routerLink="/addresses">My Addresses</a></li>
-                            <li><a routerLink="/orders">My Orders</a></li>
-                            <li><a routerLink="/profile">My Profile</a></li>
-                            <li><a routerLink="/wishlists">My Wishlists</a></li>
+                            <li><a routerLink="/user/address">My Address</a></li>
+                            <li><a routerLink="/user/order">My Order</a></li>
+                            <li><a routerLink="/user/profile">My Profile</a></li>
+                            <li><a routerLink="/user/wishlist">My Wishlist</a></li>
                             <li><a (click)="logout()">Logout</a></li>
                         </ul>
                     </div>

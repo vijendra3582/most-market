@@ -12,7 +12,11 @@ import {
 } from './front.pages';
 
 import {
-    DashboardComponent
+    DashboardComponent,
+    AddressComponent,
+    ProfileComponent,
+    OrderComponent,
+    WishlistComponent
 } from './../user/user.pages';
 
 import { Routes } from '@angular/router';
@@ -79,5 +83,25 @@ export const frontRoutes: Routes = [
         path: "user/dashboard",
         canActivate: [AuthGuard],
         component: DashboardComponent
+    },
+    {
+        path: "user/address",
+        canActivate: [AuthGuard],
+        component: AddressComponent
+    },
+    {
+        path: "user/wishlist",
+        canActivate: [AuthGuard],
+        component: WishlistComponent
+    },
+    {
+        path: "user/order",
+        canActivate: [AuthGuard],
+        component: OrderComponent
+    },
+    {
+        path: "user/profile",
+        canActivate: [AuthGuard],
+        component: ProfileComponent
     }
 ];
