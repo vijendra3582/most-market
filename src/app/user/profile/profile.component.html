@@ -84,7 +84,10 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn ripple  btn-secondary" [disabled]="!userForm.valid" nz-button nzType="primary" (click)="submit()">Update Profile</button>
+                    <button type="submit" [ngClass]="{'button-load': isSubmitLoading}" class="btn ripple  btn-secondary" [disabled]="!userForm.valid" (click)="submit()">
+                        <i class="fa fa-circle-o-notch fa-spin" *ngIf="isSubmitLoading"></i>
+                        Update Profile
+                    </button>
                 </div>
             </div>
         </div>

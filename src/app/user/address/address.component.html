@@ -1,1 +1,182 @@
-<p>address works!</p>
+<section class="mydashboardpage__12">
+    <div class="container">
+        <app-sidebar></app-sidebar>
+        <div class="col-md-9">
+            <div class="card mb-0">
+                <div class="card-header">
+                    <h3 class="card-title">Manage Address</h3>
+                    <button (click)="new()" class="pull-right">New Address</button>
+                </div>
+                <div class="new address" *ngIf="formOpen">
+                    <form [formGroup]="addressForm">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Name</label>
+                                <input formControlName="name" id="name" [(ngModel)]="address.name" type="text"
+                                    class="form-control" placeholder="Name">
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.name"
+                                    [control]="addressForm.get('name')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="mobile">Mobile Number</label>
+                                <input formControlName="mobile" id="mobile" [(ngModel)]="address.mobile" type="text"
+                                    class="form-control" placeholder="Mobile Number">
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.mobile"
+                                    [control]="addressForm.get('mobile')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="pincode">Pincode</label>
+                                <input formControlName="pincode" id="pincode" [(ngModel)]="address.pincode" type="text"
+                                    class="form-control" placeholder="Pincode">
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.pincode"
+                                    [control]="addressForm.get('pincode')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="locality">Locality</label>
+                                <input formControlName="locality" id="locality" [(ngModel)]="address.locality"
+                                    type="text" class="form-control" placeholder="Locality">
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.locality"
+                                    [control]="addressForm.get('locality')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label class="form-label" for="address">Address</label>
+                                <textarea formControlName="address" rows="" id="address" [(ngModel)]="address.address"
+                                    class="form-control" placeholder="Address"></textarea>
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.address"
+                                    [control]="addressForm.get('address')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="state">State</label>
+                                <select class="form-control" id="state" formControlName="state"
+                                    [(ngModel)]="address.state" (change)="getCity()">
+                                    <option value="">Select State</option>
+                                    <option *ngFor="let option of states.states" value="{{option.id}}">
+                                        {{ option.name }}</option>
+                                </select>
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.state"
+                                    [control]="addressForm.get('state')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="city">City</label>
+                                <select class="form-control" id="city" formControlName="city"
+                                    [(ngModel)]="address.city">
+                                    <option value="">Select City</option>
+                                    <option *ngFor="let option of cities.cities" value="{{option.id}}">
+                                        {{ option.name }}</option>
+                                </select>
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.city"
+                                    [control]="addressForm.get('city')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="landmark">Landmark</label>
+                                <input formControlName="landmark" id="landmark" [(ngModel)]="address.landmark"
+                                    type="text" class="form-control" placeholder="Landmark">
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.landmark"
+                                    [control]="addressForm.get('landmark')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="alternate_mobile">Alternate Mobile Number</label>
+                                <input formControlName="alternate_mobile" id="alternate_mobile"
+                                    [(ngModel)]="address.alternate_mobile" type="text" class="form-control"
+                                    placeholder="Alternate Mobile Number">
+                                <app-field-error [submitted]="submitted"
+                                    [server_message]="server_message.alternate_mobile"
+                                    [control]="addressForm.get('alternate_mobile')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12">
+                            <div class="form-group remember">
+                                <label for="address_type" class="address_type_label">Address Type</label>
+                                <div class="checkbox-li">
+                                    <input type="radio" name="address_type" value="home" id="address_type_home"
+                                        class="form-control" formControlName="address_type">
+                                    <label for="address_type_home">Home</label>
+                                </div>
+                                <div class="checkbox-li">
+                                    <input type="radio" name="address_type" value="work" id="address_type_work"
+                                        class="form-control" formControlName="address_type">
+                                    <label for="address_type_work">Work</label>
+                                </div>
+                                <app-field-error [submitted]="submitted" [server_message]="server_message.address_type"
+                                    [control]="addressForm.get('address_type')"></app-field-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <button type="submit" [ngClass]="{'button-load': isSubmitLoading}" class="btn btn-primary" [disabled]="!addressForm.valid"
+                                    (click)="submit()">
+                                    <i class="fa fa-circle-o-notch fa-spin" *ngIf="isSubmitLoading"></i>
+                                    {{ button_name }}
+                                </button>
+                                <button type="button" class="btn btn-danger" (click)="cancel()">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="magaes__addres__a" *ngIf="!formOpen">
+                    <ul class="ad__09876r">
+                        <li class="s__showing" *ngFor="let addr of addresses">
+                            <div class="fulladdress">
+                                <div class="addressicon">
+                                    <i class="fa fa-home"></i>
+                                </div>
+                                <div class="address__content">
+                                    <h3 class="capitalize">{{ addr.address_type }}</h3>
+                                    <p>
+                                        <span class="address-name">
+                                            {{ addr.name }}
+                                        </span>
+                                        <span class="address-number">
+                                            {{ addr.mobile }}
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span class="address-address">
+                                            {{ addr.address }}, {{ addr.locality }}, {{ addr.city_name }},
+                                            {{ addr.state_name }} - {{ addr.pincode }}
+                                        </span>
+                                    </p>
+                                    <ul class="edit__delete">
+                                        <li>
+                                            <a href="javascript:void(0);" (click)="edit(addr.id)">
+                                                <span class="panc">
+                                                    <i class="fa fa-pencil"></i>
+                                                </span>Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);" (click)="delete(addr.id)">
+                                                <span class="panc">
+                                                    <i class="fa fa-trash"></i>
+                                                </span>
+                                                Delete
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

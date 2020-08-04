@@ -7,7 +7,11 @@
                         <div class="col-md-10">
                             <div class="small__he">
                                 <small>Order food online from</small>
-                                <h3 class="mainheading">{{ vendor.name }}</h3>
+                                <h3 class="mainheading">{{ vendor.name }}
+                                    <a href="javascript:void(0);" (click)="wishlist()">
+                                        <i class="fa fa-heart-o"></i>
+                                    </a>
+                                </h3>
                                 <p>{{ vendor.address }}</p>
                                 <p>•Costs ₹900.00 for two</p>
                             </div>
@@ -88,11 +92,12 @@
                                         <div class="product-detail-right-box">
                                             <div class="product-list-label add__0">
                                                 <span class="rectangle-tag bg-gradient-red text-custom-white"
-                                                    (click)="add(product)" *ngIf="!checkCart(product)">Add</span>
-                                                    
+                                                    (click)="add(product)" *ngIf="!checkCart(product)">
+                                                    Add
+                                                </span>
+
                                                 <span class="rectangle-tag bg-gradient-red text-custom-white"
                                                     (click)="remove(product)" *ngIf="checkCart(product)">Remove</span>
-                                                <!-- <span class="rectangle-tag bg-dark text-custom-white customize">customizable</span> -->
                                             </div>
                                         </div>
                                     </div>

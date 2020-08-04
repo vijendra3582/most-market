@@ -47,6 +47,7 @@
 	margin: 0 auto;
 	margin-top: 18px;
 }
+
 .brround {
 	border-radius: 50%;
 }
@@ -65,7 +66,6 @@
 	color: #6b66f8;
 	border-right: 2px solid #c33332;
 }
-
 
 .border-bottom {
 	border-bottom: 1px solid #dbddf1 !important;
@@ -115,7 +115,6 @@
 	height: 100%;
 }
 
-
 .card.mb-0 .form-control {
 	display: block;
 	width: 100%;
@@ -123,10 +122,10 @@
 	font-size: .9375rem;
 	line-height: 1.6;
 	color: #2e384d;
-	height: 39px;
+	height: auto;
 	background-color: #fff;
 	background-clip: padding-box;
-	border: 1px solid #eaebf7;
+	border: 1px solid lightgray;
 	border-radius: 4px;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 	font-size: 13px;
@@ -180,13 +179,14 @@
 	top: -19px;
 	border-radius: 5px;
 }
+
 .custom-file-input {
 	opacity: 0;
 	height: 47px;
 	width: 100%;
 	position: relative;
 	z-index: 99999;
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .btn.ripple.btn-secondary {
@@ -237,6 +237,7 @@ footer {
 .table-bordered td, .table-bordered th, .text-wrap table td, .text-wrap table th {
 	border: 1px solid #eaebf7;
 }
+
 .table td {
 	padding: .75rem;
 	vertical-align: top;
@@ -352,13 +353,14 @@ th {
 .s__showing {
 	float: left;
 	width: 50%;
-	border: 1px solid #000;  
-} 
+	border: 1px solid #000;
+}
 
 .addressicon {
 	float: left;
 	width: 30%;
 }
+
 .address__content {
 	float: left;
 	width: 69%;
@@ -386,4 +388,9 @@ th {
 	padding: 16px;
 	margin: 12px;
 	border-radius: 6px;
+}
+
+.checkbox-li {
+	float: left;
+	width: 100px;
 }

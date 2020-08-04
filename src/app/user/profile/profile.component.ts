@@ -14,12 +14,14 @@ export class ProfileComponent implements OnInit {
   userForm: FormGroup;
   server_message: any = {};
   user: any = {};
-  submitted: boolean = false;
 
   states: any = [];
   cities: any = [];
 
   currentStepForm = 0;
+
+  submitted = false;
+  isSubmitLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -78,10 +80,13 @@ export class ProfileComponent implements OnInit {
   }
 
   submit() {
+    this.isSubmitLoading = true;
     this.submitted = true;
     this.authService.profile(this.user).subscribe(
       data => {
         this.tokenService.updateUser(data.user[0]);
+        this.isSubmitLoading = false;
+        this.submitted = false;
         this.ngOnInit();
       }
     );

@@ -3,6 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { HomeService } from "src/app/services/home.service";
 import { ActivatedRoute } from "@angular/router";
 import { CartService } from "src/app/services/cart.service";
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: "app-single",
@@ -21,7 +22,8 @@ export class SingleComponent implements OnInit {
     private homeService: HomeService,
     private titleService: Title,
     private route: ActivatedRoute,
-    private cartService: CartService
+    private cartService: CartService,
+    private wishlistService: WishlistService
   ) {
     this.titleService.setTitle("Most Market");
   }
@@ -151,5 +153,22 @@ export class SingleComponent implements OnInit {
     return this.cartTotalAmount = this.cartProductList.reduce(function (res, item) {
       return res + (item.sale_price * item.quantity);
     }, 0);
+  }
+
+  wishlist() {
+    const data = { "vendor_id": this.vendor.id };
+    if (!this.vendor.is_wishlist) {
+      this.wishlistService.save(data).subscribe(
+        data => {
+          this.vendor = data.data[0];
+        }
+      )
+    } else {
+      this.wishlistService.remove(this.vendor.id).subscribe(
+        data => {
+          this.vendor = data.data[0];
+        }
+      )
+    }
   }
 }

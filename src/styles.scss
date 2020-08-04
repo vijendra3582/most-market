@@ -164,7 +164,28 @@ ul.dropdown-menu-user li a {
     float: left;
     width: 100%;
     margin-bottom: 2rem;
-    h5{
+    h5 {
         font-weight: 600;
+    }
+}
+
+label.address_type_label {
+    font-weight: normal;
+    width: 100%;
+}
+
+h3.capitalize {
+    text-transform: capitalize;
+}
+
+.button-load {
+    background-color: lightgray;
+    border: none;
+    color: black;
+    padding: 12px 24px;
+    font-size: 16px;
+    .fa {
+        margin-left: -12px;
+        margin-right: 8px;
     }
 }
