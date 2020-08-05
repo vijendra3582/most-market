@@ -85,7 +85,8 @@
                                                 </h6>
                                                 <p class="text-light-white fs-12">{{ vendor.name }}</p>
                                                 <p class="price">
-                                                    <span class="line-through pr10">₹{{ product.sale_price }}</span>
+                                                    <span class="line-through pr10 cross">₹{{ product.sale_price }}</span>
+                                                    <span class="line-through pr10">₹{{ product.discount_price }}</span>
                                                 </p>
                                                 <p class="location">{{ vendor.address }}</p>
                                             </div>
@@ -131,7 +132,8 @@
                                             value="Increase Value">+</div>
                                     </div>
                                     <div class="item-price-container">
-                                        <span>₹{{ product.sale_price * product.quantity }}</span>
+                                        <span class="cross">₹{{ product.sale_price * product.quantity }}</span>
+                                        <span>₹{{ product.discount_price * product.quantity }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -150,10 +152,9 @@
                         </li>
                     </ul>
                     <div class="additional-charges mbot0">(plus taxes)</div>
-                    <div class="special-instructions mbot0"><textarea
-                            placeholder="Enter any additional information about your order. Eg: 'No Mayo!'"
-                            style="max-width: 100%; resize: none;"></textarea></div>
-                    <button class="ui large green fluid button checkout">Continue</button>
+                    <a routerLink="/checkout"><button class="ui large green fluid button checkout mt5">
+                        Continue
+                    </button></a>
                 </div>
             </div>
         </div>

@@ -31,13 +31,23 @@ export const frontRoutes: Routes = [
     },
     {
         path: 'vendor/:slug',
-        canActivate: [AuthGuard],
+        canActivate: [],
         component: SingleComponent
     },
     {
         path: 'search',
-        canActivate: [AuthGuard],
+        canActivate: [],
         component: ListingComponent
+    },
+    {
+        path: "category/:slug",
+        canActivate: [],
+        component: ListingComponent
+    },
+    {
+        path: "checkout",
+        canActivate: [AuthGuard],
+        component: CheckoutComponent
     },
     {
         path: "auth/login",
@@ -68,16 +78,6 @@ export const frontRoutes: Routes = [
         path: "terms-condition",
         canActivate: [],
         component: TermsConditionComponent
-    },
-    {
-        path: "category/:slug",
-        canActivate: [],
-        component: ListingComponent
-    },
-    {
-        path: "checkout",
-        canActivate: [AuthGuard],
-        component: CheckoutComponent
     },
     {
         path: "user/dashboard",

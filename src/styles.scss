@@ -195,3 +195,12 @@ a.wishlisted i {
     color: red;
     object-fit: fill;
 }
+
+.item-price-container span.cross {
+    text-decoration: line-through;
+    margin-right: 1rem;
+}
+
+.price .cross {
+    text-decoration: line-through;
+}

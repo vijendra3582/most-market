@@ -107,7 +107,6 @@ export class SingleComponent implements OnInit {
     } else {
 
     }
-
     this.cartService.decrement({ "product_id": product.id, "quantity": product.quantity }).subscribe(
       data => {
         this.cartProductList = this.cartProductList.map((item) => {
@@ -119,12 +118,10 @@ export class SingleComponent implements OnInit {
         this.disabledCartButton = false;
       }
     );
-
     this.getTotalAmout();
   }
 
   remove(product) {
-    console.log(product);
     this.disabledCartButton = true;
     this.cartService.remove(product.id).subscribe(
       data => {
@@ -145,6 +142,10 @@ export class SingleComponent implements OnInit {
   }
 
   checkVendor(product) {
+    if (this.cartProductList.length === 0) {
+      return true;
+    }
+    
     return this.cartProductList.some(function (el) {
       return el.vendor_id === product.vendor_id;
     });
@@ -152,7 +153,7 @@ export class SingleComponent implements OnInit {
 
   getTotalAmout() {
     return this.cartTotalAmount = this.cartProductList.reduce(function (res, item) {
-      return res + (item.sale_price * item.quantity);
+      return res + (item.discount_price * item.quantity);
     }, 0);
   }
 
