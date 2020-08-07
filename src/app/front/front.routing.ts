@@ -90,6 +90,16 @@ export const frontRoutes: Routes = [
         component: AddressComponent
     },
     {
+        path: "user/address/:action",
+        canActivate: [AuthGuard],
+        component: AddressComponent
+    },
+    {
+        path: "user/address/:action/:id",
+        canActivate: [AuthGuard],
+        component: AddressComponent
+    },
+    {
         path: "user/wishlist",
         canActivate: [AuthGuard],
         component: WishlistComponent

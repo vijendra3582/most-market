@@ -3571,13 +3571,15 @@ a.social_bt.facebook {
 
 .panel-title a {
     background: #fff;
-    width: 100% !important;
+    width: auto;
     display: inherit;
     height: 44px;
     padding-left: 15px;
+    padding-right: 15px;
     line-height: 44px;
     text-transform: uppercase;
     letter-spacing: 0.3px;
+    float: left;
 }
 
 .checkout__pagesss .container {

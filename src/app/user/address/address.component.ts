@@ -4,6 +4,7 @@ import { LocationService } from 'src/app/services/location.service';
 import { AddressService } from 'src/app/services/address.service';
 import { ValidateNumber } from 'src/app/validations/custom.validators';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-address',
@@ -23,13 +24,29 @@ export class AddressComponent implements OnInit {
   submitted = false;
   isSubmitLoading = false;
 
+  url_action: String;
+  url_action_id: String;
+
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private locationService: LocationService,
     private addressService: AddressService,
     private titleService: Title
-  ) { 
+  ) {
     this.titleService.setTitle('Manage Address - Most Market');
+
+    const url = this.router.url;
+    this.url_action = url.split('/')[3];
+    this.url_action_id = url.split('/')[4];
+
+    if (this.url_action == 'edit') {
+      this.edit(this.url_action_id);
+    }
+
+    if (this.url_action == 'add') {
+      this.new();
+    }
   }
 
   ngOnInit() {
@@ -40,7 +57,6 @@ export class AddressComponent implements OnInit {
     this.addressService.all().subscribe(
       data => {
         this.addresses = data.data.response;
-        console.log(this.addresses);
       }
     )
   }
@@ -145,6 +161,9 @@ export class AddressComponent implements OnInit {
     this.isSubmitLoading = false;
     this.submitted = false;
     if (data.status == true) {
+      if (this.url_action == 'add' || this.url_action == 'edit') {
+        this.router.navigateByUrl('/checkout');
+      }
       this.formOpen = false;
       this.get();
     } else {
@@ -161,8 +180,8 @@ export class AddressComponent implements OnInit {
     }
   }
 
-  delete(id){
-    if(!confirm('Are you sure ?')){
+  delete(id) {
+    if (!confirm('Are you sure ?')) {
       return;
     }
     this.addressService.delete(id).subscribe(

@@ -204,3 +204,85 @@ a.wishlisted i {
 .price .cross {
     text-decoration: line-through;
 }
+.panel-group {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+    border: 1px solid;
+    .panel {
+        float: left;
+        width: 100%;
+    }
+}
+.s__showing {
+    float: left;
+    width: 46.4%;
+    border: 1px solid #0000001a;
+    padding: 16px;
+    margin: 12px;
+    border-radius: 6px;
+}
+
+.address-select {
+    input {
+        vertical-align: middle;
+        margin-right: 1rem;
+        float: left;
+        cursor: pointer;
+    }
+    label {
+        margin-top: 0rem;
+        float: left;
+        cursor: pointer;
+    }
+}
+
+.ui.large.green.fluid.button.checkout:disabled {
+    background: lightgray;
+    cursor: not-allowed;
+}
+
+.coupon-code-input {
+    float: left;
+    width: 100%;
+    margin-bottom: 2rem;
+    .form-control-coupon {
+        border: 1.3px solid lightgray;
+        padding: 5px;
+        float: left;
+    }
+    .btn-coupon {
+        float: left;
+        padding: 5px 27px;
+        border: 1.3px solid lightgray;
+        border-left: 0;
+    }
+    label.coupon-info-invalid {
+        float: left;
+        width: 100%;
+        margin-top: .1rem;
+        color: tomato;
+    }
+    label.coupon-info-valid {
+        float: left;
+        width: 100%;
+        margin-top: .1rem;
+        color: green;
+    }
+}
+
+.panel-title {
+    float: left;
+    width: 100%;
+}
+
+.button-load {
+    pointer-events: none;
+    background: lightgray !important;
+    cursor: not-allowed !important;
+    z-index: -1;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
